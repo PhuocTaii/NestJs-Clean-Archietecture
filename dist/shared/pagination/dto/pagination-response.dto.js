@@ -8,7 +8,7 @@ class PaginationResponseDto {
         this.page = page;
         this.limit = limit;
         this.totalPages = Math.ceil(total / limit);
-        this.isLast = page >= this.totalPages;
+        this.isLast = page >= (this.totalPages - 1);
     }
 }
 exports.PaginationResponseDto = PaginationResponseDto;

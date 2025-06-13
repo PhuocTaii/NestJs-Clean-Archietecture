@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { PaginationResponseDto } from 'src/shared/pagination/dto/pagination-response.dto';
 import { User } from 'src/modules/user/domain/entities/user.entity';
 import { UserEntity } from 'src/modules/user/infrastructure/persistence/user.entity';
+import { UserDto } from '../../dto/user.dto';
 
 @QueryHandler(FindAllUsersQuery)
 export class FindAllUsersHandler implements IQueryHandler<FindAllUsersQuery>
@@ -14,11 +15,16 @@ export class FindAllUsersHandler implements IQueryHandler<FindAllUsersQuery>
     private readonly userService: UserService,
   ) {}
 
-  async execute(command: FindAllUsersQuery): Promise<PaginationResponseDto<UserEntity>> {
+  async execute(command: FindAllUsersQuery): Promise<PaginationResponseDto<UserDto>> {
     const { page, limit } = command;
 
     const { data, total } = await this.userService.findAll(page, limit);
 
-    return new PaginationResponseDto(data, total, page, limit);
+    const userDtos = data.map(user => new UserDto(
+      user.name,
+      user.email,
+    ));
+
+    return new PaginationResponseDto(userDtos, total, page, limit);
   }
 }

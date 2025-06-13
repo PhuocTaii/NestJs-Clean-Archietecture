@@ -16,13 +16,15 @@ exports.CreateUserHandler = void 0;
 const cqrs_1 = require("@nestjs/cqrs");
 const create_user_command_1 = require("../create-user.command");
 const common_1 = require("@nestjs/common");
+const user_dto_1 = require("../../dto/user.dto");
 let CreateUserHandler = class CreateUserHandler {
     constructor(userService) {
         this.userService = userService;
     }
     async execute(command) {
         const { name, email, password } = command;
-        return this.userService.create(name, email, password);
+        const user = await this.userService.create(name, email, password);
+        return new user_dto_1.UserDto(user.name, user.email);
     }
 };
 exports.CreateUserHandler = CreateUserHandler;

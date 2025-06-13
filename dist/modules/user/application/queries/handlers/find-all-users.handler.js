@@ -17,6 +17,7 @@ const cqrs_1 = require("@nestjs/cqrs");
 const find_all_users_query_1 = require("../find-all-users.query");
 const common_1 = require("@nestjs/common");
 const pagination_response_dto_1 = require("../../../../../shared/pagination/dto/pagination-response.dto");
+const user_dto_1 = require("../../dto/user.dto");
 let FindAllUsersHandler = class FindAllUsersHandler {
     constructor(userService) {
         this.userService = userService;
@@ -24,7 +25,8 @@ let FindAllUsersHandler = class FindAllUsersHandler {
     async execute(command) {
         const { page, limit } = command;
         const { data, total } = await this.userService.findAll(page, limit);
-        return new pagination_response_dto_1.PaginationResponseDto(data, total, page, limit);
+        const userDtos = data.map(user => new user_dto_1.UserDto(user.name, user.email));
+        return new pagination_response_dto_1.PaginationResponseDto(userDtos, total, page, limit);
     }
 };
 exports.FindAllUsersHandler = FindAllUsersHandler;

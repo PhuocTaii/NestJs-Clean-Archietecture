@@ -7,6 +7,7 @@ import { UserEntity } from './infrastructure/persistence/user.entity';
 import { CreateUserHandler } from './application/commands/handlers/create-user.handler';
 import { CqrsModule } from '@nestjs/cqrs';
 import { FindAllUsersHandler } from './application/queries/handlers/find-all-users.handler';
+import { CommandHandlers, QueryHandlers } from './application/user.handlers';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity]), CqrsModule],
@@ -21,14 +22,8 @@ import { FindAllUsersHandler } from './application/queries/handlers/find-all-use
       provide: 'UserService',
       useClass: UserServiceImpl,
     },
-    {
-      provide: 'CreateUserHandler',
-      useClass: CreateUserHandler,
-    },
-    {
-      provide: 'FindAllUsersQuery',
-      useClass: FindAllUsersHandler,
-    },
+    ...CommandHandlers,
+    ...QueryHandlers
   ],
   exports: [TypeOrmModule],
 })
