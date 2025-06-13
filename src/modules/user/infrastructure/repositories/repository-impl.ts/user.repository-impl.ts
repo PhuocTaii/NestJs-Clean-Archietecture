@@ -3,7 +3,7 @@ import { UserRepository } from '../user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../persistence/user.entity';
 import { Repository } from 'typeorm';
-import { User } from 'src/modules/user/domain/entities/user.entity';
+import { User } from 'src/modules/user/domain/entities/user.domain';
 import { PaginatedResult } from 'src/shared/pagination/interfaces/pagination-result.interface';
 
 @Injectable()

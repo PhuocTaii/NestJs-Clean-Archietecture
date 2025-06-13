@@ -1,4 +1,4 @@
-import { User } from 'src/modules/user/domain/entities/user.entity';
+import { User } from 'src/modules/user/domain/entities/user.domain';
 import { UserService } from '../user.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/modules/user/infrastructure/repositories/user.repository';

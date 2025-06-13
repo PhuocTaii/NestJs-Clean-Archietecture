@@ -3,7 +3,7 @@ import { FindAllUsersQuery } from '../find-all-users.query';
 import { Inject } from '@nestjs/common';
 import { UserService } from '../../services/user.service';
 import { PaginationResponseDto } from 'src/shared/pagination/dto/pagination-response.dto';
-import { User } from 'src/modules/user/domain/entities/user.entity';
+import { User } from 'src/modules/user/domain/entities/user.domain';
 import { UserEntity } from 'src/modules/user/infrastructure/persistence/user.entity';
 import { UserDto } from '../../dto/user.dto';
 
