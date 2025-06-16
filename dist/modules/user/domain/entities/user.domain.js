@@ -9,4 +9,4 @@ class User {
     }
 }
 exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+//# sourceMappingURL=user.domain.js.map

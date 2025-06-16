@@ -13,14 +13,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserServiceImpl = void 0;
-const user_entity_1 = require("../../../domain/entities/user.entity");
+const user_domain_1 = require("../../../domain/entities/user.domain");
 const common_1 = require("@nestjs/common");
 let UserServiceImpl = class UserServiceImpl {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
     async create(name, email, password) {
-        const user = new user_entity_1.User(name, email, password);
+        const user = new user_domain_1.User(name, email, password);
         return this.userRepository.save(user);
     }
     async findAll(page, limit) {

@@ -13,9 +13,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_service_impl_1 = require("./application/services/service-impl/user.service-impl");
 const user_repository_impl_1 = require("./infrastructure/repositories/repository-impl.ts/user.repository-impl");
 const user_entity_1 = require("./infrastructure/persistence/user.entity");
-const create_user_handler_1 = require("./application/commands/handlers/create-user.handler");
 const cqrs_1 = require("@nestjs/cqrs");
-const find_all_users_handler_1 = require("./application/queries/handlers/find-all-users.handler");
+const user_handlers_1 = require("./application/user.handlers");
 let UserModule = class UserModule {
 };
 exports.UserModule = UserModule;
@@ -32,14 +31,8 @@ exports.UserModule = UserModule = __decorate([
                 provide: 'UserService',
                 useClass: user_service_impl_1.UserServiceImpl,
             },
-            {
-                provide: 'CreateUserHandler',
-                useClass: create_user_handler_1.CreateUserHandler,
-            },
-            {
-                provide: 'FindAllUsersQuery',
-                useClass: find_all_users_handler_1.FindAllUsersHandler,
-            },
+            ...user_handlers_1.CommandHandlers,
+            ...user_handlers_1.QueryHandlers
         ],
         exports: [typeorm_1.TypeOrmModule],
     })
