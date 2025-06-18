@@ -6,16 +6,12 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   public name: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  public email: string;
+  @Column({ type: 'int', default: 0 })
+  public point: number;
 
-  @Column({ type: 'varchar', length: 255 })
-  public password: string;
-
-  constructor(name: string, email: string, password: string) {
+  constructor(name: string, point: number) {
     super();
     this.name = name;
-    this.email = email;
-    this.password = password;
+    this.point = point;
   }
 }

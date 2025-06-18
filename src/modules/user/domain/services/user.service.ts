@@ -1,13 +1,10 @@
-import { UserEntity } from '../../infrastructure/persistence/user.entity';
 import { PaginatedResult } from 'src/shared/pagination/interfaces/pagination-result.interface';
+import { UserDto } from '../../application/dto/user.dto';
 
 export interface UserService {
-  create(name: string, email: string, password: string): Promise<UserEntity>;
+  create(name: string, point: number): Promise<UserDto>;
 
-  findAll(
-    page: number,
-    limit: number
-  ): Promise<PaginatedResult<UserEntity>>;
+  findById(id: string): Promise<UserDto>;
 
   // findOne(id: string): Promise<User>;
 

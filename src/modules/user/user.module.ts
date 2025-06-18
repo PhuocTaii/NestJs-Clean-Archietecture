@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './interfaces/controllers/user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserServiceImpl } from './application/services/service-impl/user.service-impl';
-import { UserRepositoryImpl } from './infrastructure/repositories/repository-impl.ts/user.repository-impl';
+import { UserServiceImpl } from './application/services/user.service-impl';
 import { UserEntity } from './infrastructure/persistence/user.entity';
-import { CreateUserHandler } from './application/commands/handlers/create-user.handler';
 import { CqrsModule } from '@nestjs/cqrs';
-import { FindAllUsersHandler } from './application/queries/handlers/find-all-users.handler';
 import { CommandHandlers, QueryHandlers } from './application/user.handlers';
+import { UserRepositoryImpl } from './infrastructure/repositories/user.repository-impl';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity]), CqrsModule],
