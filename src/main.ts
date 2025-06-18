@@ -11,7 +11,7 @@ async function bootstrap() {
   app.useGlobalGuards(new HeaderGuard(app.get('ConfigService')));
 
   swaggerConfig(app);
-  
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

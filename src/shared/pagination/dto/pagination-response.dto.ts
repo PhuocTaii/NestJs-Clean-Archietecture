@@ -12,6 +12,6 @@ export class PaginationResponseDto<T> {
     this.page = page;
     this.limit = limit;
     this.totalPages = Math.ceil(total / limit);
-    this.isLast = page >= (this.totalPages - 1); //totalPages starts from 1 not 0 while page starts from 0
+    this.isLast = page >= this.totalPages - 1; //totalPages starts from 1 not 0 while page starts from 0
   }
 }

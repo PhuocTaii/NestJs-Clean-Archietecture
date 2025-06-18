@@ -4,6 +4,7 @@ import { HttpStatus, Inject } from '@nestjs/common';
 import { UserDto } from '../../dto/user.dto';
 import { UserService } from 'src/modules/user/domain/services/user.service';
 import { SuccessResponse } from 'src/shared/base/success_response';
+import { CreateUserDto } from '../../dto/create_user.dto';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
@@ -12,16 +13,18 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     private readonly userService: UserService,
   ) {}
 
-  async execute(command: CreateUserCommand): Promise<SuccessResponse<UserDto>> {
+  async execute(
+    command: CreateUserCommand,
+  ): Promise<SuccessResponse<CreateUserDto>> {
     //Call to service
     const { name, point } = command;
 
     const user = await this.userService.create(name, point);
 
-    return new SuccessResponse<UserDto>(
-      "User created successfully",
+    return new SuccessResponse<CreateUserDto>(
+      'User created successfully',
       HttpStatus.CREATED,
-      user
+      user,
     );
   }
 }

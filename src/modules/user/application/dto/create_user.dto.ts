@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CommitmentStatus } from '../../domain/entities/commitment_status.domain';
 
-export class UserDto {
+export class CreateUserDto {
   @ApiProperty({
     example: '12345',
     description: 'Unique identifier of the user',
@@ -14,21 +13,9 @@ export class UserDto {
   @ApiProperty({ example: 40, description: 'Point of the user' })
   point: number;
 
-  @ApiProperty({
-    enum: CommitmentStatus,
-    description: "Status of the user's commitment",
-  })
-  status: CommitmentStatus;
-
-  constructor(
-    id: string,
-    name: string,
-    point: number,
-    status: CommitmentStatus,
-  ) {
+  constructor(id: string, name: string, point: number) {
     this.id = id;
     this.name = name;
     this.point = point;
-    this.status = status;
   }
 }

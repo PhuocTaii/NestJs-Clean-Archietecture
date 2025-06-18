@@ -21,7 +21,7 @@ import { UserRepositoryImpl } from './infrastructure/repositories/user.repositor
       useClass: UserServiceImpl,
     },
     ...CommandHandlers,
-    ...QueryHandlers
+    ...QueryHandlers,
   ],
   exports: [TypeOrmModule],
 })

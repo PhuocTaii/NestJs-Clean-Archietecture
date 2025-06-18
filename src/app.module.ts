@@ -26,7 +26,7 @@ import { HeaderGuard } from './shared/security/header-guard.security';
     {
       provide: 'HeaderGuard',
       useClass: HeaderGuard,
-    }
+    },
   ],
 })
 export class AppModule {}
