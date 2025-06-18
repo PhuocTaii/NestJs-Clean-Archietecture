@@ -33,14 +33,18 @@ export class UserController {
   ) {}
 
   @Post()
-  @SwaggerResponse(CreateUserDto, "User created successfully", HttpStatus.CREATED)
+  @SwaggerResponse(
+    CreateUserDto,
+    'User created successfully',
+    HttpStatus.CREATED,
+  )
   create(@Body() createUserCommand: CreateUserCommand) {
     const { name, point } = createUserCommand;
     return this.commandBus.execute(new CreateUserCommand(name, point));
   }
 
   @Get(':id')
-  @SwaggerResponse(UserDto, "User found successfully", HttpStatus.OK)
+  @SwaggerResponse(UserDto, 'User found successfully', HttpStatus.OK)
   findOne(@Param('id') id: string) {
     return this.queryBus.execute(new FindUserByIdQuery(id));
   }

@@ -1,13 +1,5 @@
-import {
-  applyDecorators,
-  HttpStatus,
-  Type,
-} from '@nestjs/common';
-import {
-  ApiExtraModels,
-  ApiOkResponse,
-  getSchemaPath,
-} from '@nestjs/swagger';
+import { applyDecorators, HttpStatus, Type } from '@nestjs/common';
+import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
 import { SuccessResponse } from '../base/success_response';
 
 export const SwaggerResponse = <TModel extends Type<any>>(
