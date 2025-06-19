@@ -102,8 +102,8 @@ npm run start:dev
 
 Access the API at:
 
-- Base URL: [http://localhost:3000/api](http://localhost:3000/api)
-- Swagger UI: [http://localhost:3000/docs](http://localhost:3000/docs) (if enabled)
+- Base URL: [http://localhost:3000/api/v1](http://localhost:3000/api/v1)
+- Swagger UI: [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ---
 
