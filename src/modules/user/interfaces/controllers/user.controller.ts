@@ -1,18 +1,13 @@
-import { Controller, Get, Post, Body, Param, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, HttpStatus, NotFoundException, HttpException } from '@nestjs/common';
 import { CreateUserCommand } from '../../application/commands/create-user.command';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { FindUserByIdQuery } from '../../application/queries/find-user-by-id.query';
 import {
-  ApiCreatedResponse,
   ApiHeader,
-  ApiOkResponse,
-  ApiOperation,
   ApiResponse,
-  ApiTags,
-  getSchemaPath,
+  ApiTags
 } from '@nestjs/swagger';
 import { UserDto } from '../../application/dto/user.dto';
-import { SuccessResponse } from 'src/shared/base/success_response';
 import { SwaggerResponse } from 'src/shared/utils/swagger_response.helper';
 import { CreateUserDto } from '../../application/dto/create_user.dto';
 
@@ -21,10 +16,16 @@ import { CreateUserDto } from '../../application/dto/create_user.dto';
   name: 'x-test-token',
   description: 'Test token for API',
 })
-@ApiResponse({ status: 403, description: 'Forbidden.' })
-@ApiResponse({ status: 404, description: 'Not Found.' })
-@ApiResponse({ status: 400, description: 'Bad Request.' })
-@ApiResponse({ status: 500, description: 'Internal Server Error.' })
+  @ApiResponse({
+    status: HttpStatus.FORBIDDEN,
+    description: 'Forbidden',
+    schema: {
+      example: {
+        statusCode: HttpStatus.FORBIDDEN,
+        message: 'Không có quyền truy cập',
+      },
+    }
+  })
 @ApiTags('User')
 export class UserController {
   constructor(
@@ -45,6 +46,16 @@ export class UserController {
 
   @Get(':id')
   @SwaggerResponse(UserDto, 'User found successfully', HttpStatus.OK)
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found',
+    schema: {
+      example: {
+        statusCode: HttpStatus.NOT_FOUND,
+        message: 'Không tìm thấy người dùng',
+      },
+    }
+  })
   findOne(@Param('id') id: string) {
     return this.queryBus.execute(new FindUserByIdQuery(id));
   }

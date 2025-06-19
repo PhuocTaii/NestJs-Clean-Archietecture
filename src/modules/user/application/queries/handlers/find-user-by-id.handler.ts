@@ -13,12 +13,16 @@ export class FindUserByIdQueryHandler {
   ) {}
 
   async execute(query: FindUserByIdQuery): Promise<SuccessResponse<UserDto>> {
-    const { id } = query;
-    const res = await this.userService.findById(id);
-    return new SuccessResponse<UserDto>(
-      'User found successfully',
-      HttpStatus.OK,
-      res,
-    );
+    try{
+      const { id } = query;
+      const res = await this.userService.findById(id);
+      return new SuccessResponse<UserDto>(
+        'User found successfully',
+        HttpStatus.OK,
+        res,
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 }

@@ -6,6 +6,7 @@ import { UserDto } from '../dto/user.dto';
 import { UserService } from '../../domain/services/user.service';
 import { CreateUserDto } from '../dto/create_user.dto';
 import { getUserCommitmentStatus } from '../../domain/entities/commitment_status.domain';
+import { CustomException } from 'src/shared/exceptions/custom.exception';
 
 @Injectable()
 export class UserServiceImpl implements UserService {
@@ -26,7 +27,7 @@ export class UserServiceImpl implements UserService {
     const res = await this.userRepository.findById(id);
 
     if (!res) {
-      throw new Error(`User with id ${id} not found`);
+      throw CustomException.notFound('Cannot find user with id ' + id);
     }
 
     return new UserDto(

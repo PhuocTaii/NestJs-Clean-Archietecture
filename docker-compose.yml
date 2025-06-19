@@ -6,10 +6,7 @@ services:
     container_name: nest_postgres
     ports:
       - '5432:5432'
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+    env_file: ".env"
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
