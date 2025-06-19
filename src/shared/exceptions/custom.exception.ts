@@ -20,4 +20,8 @@ export class CustomException extends HttpException {
   static forbidden(message: string): CustomException {
     return new CustomException(message, HttpStatus.FORBIDDEN);
   }
+
+  static unauthorized(message: string): CustomException {
+    return new CustomException(message, HttpStatus.UNAUTHORIZED);
+  }
 }

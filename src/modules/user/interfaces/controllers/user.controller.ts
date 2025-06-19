@@ -17,11 +17,11 @@ import { CreateUserDto } from '../../application/dto/create_user.dto';
   description: 'Test token for API',
 })
   @ApiResponse({
-    status: HttpStatus.FORBIDDEN,
-    description: 'Forbidden',
+    status: HttpStatus.UNAUTHORIZED,
+    description: 'Unauthorized',
     schema: {
       example: {
-        statusCode: HttpStatus.FORBIDDEN,
+        statusCode: HttpStatus.UNAUTHORIZED,
         message: 'Không có quyền truy cập',
       },
     }

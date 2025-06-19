@@ -122,11 +122,11 @@ Body
 }
 ```
 
-403 Forbidden
+401 Unauthorized
 
 ```json
 {
-    "statusCode": 403,
+    "statusCode": 401,
     "message": "Không có quyền truy cập"
 }
 ```
@@ -168,11 +168,11 @@ x-test-token: token
 }
 ```
 
-403 Forbidden
+401 Unauthorized
 
 ```json
 {
-    "statusCode": 403,
+    "statusCode": 401,
     "message": "Không có quyền truy cập"
 }
 ```

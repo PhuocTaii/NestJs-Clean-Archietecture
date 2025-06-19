@@ -16,7 +16,7 @@ export class HeaderGuard implements CanActivate {
     const token = request.headers['x-test-token'];
 
     if (!token || token !== expectedToken) {
-      throw CustomException.forbidden('Không có quyền truy cập');
+      throw CustomException.unauthorized('Không có quyền truy cập');
     }
 
     return true;
